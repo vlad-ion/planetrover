@@ -12,19 +12,26 @@ Commands are F = forward, B = backward, L = turn left, R = turn right.
 
 ## Usage
 
-You can build and run the project,then type commands in, one command string per line and press enter.
+You can build and run the project, then type commands in, one command string per line and press enter.
 Rover starts at position 0,0 heading North on a 100x100 grid map by default. The default map can be
 changed from the appsettings.json file.
 
 When done, you can stop the simulation with Ctrl+C.
 
 Example:
+
 FFRFF
+
 (press enter)
+
 (rover moves and lists new position)
+
 BLBL
+
 (press enter)
+
 (rover moves and lists new position)
+
 ...
 
 
