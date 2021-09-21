@@ -16,12 +16,12 @@ namespace NotAPlanetRover
         {
             m_roverController = roverController;
             m_logger = logger;
-
-
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancelToken)
         {
+            m_logger.LogInformation($"Roaming on a {m_roverController.MapWidth}*{m_roverController.MapHeight} map");
+
             while (!cancelToken.IsCancellationRequested)
             {
                 var position = m_roverController.GetRoverPosition();
