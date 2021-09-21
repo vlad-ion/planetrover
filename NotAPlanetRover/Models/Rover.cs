@@ -19,6 +19,7 @@ namespace NotAPlanetRover.Models
             Position = new Position(x, y, orientation);
         }
 
+        ///<inheritdoc/>
         public bool Move(int moveDistance)
         {
             int newX = (int)Position.x;
@@ -51,6 +52,7 @@ namespace NotAPlanetRover.Models
             }
         }
 
+        ///<inheritdoc/>
         public bool Rotate(int rotateAmount)
         {
             //use the fact that enums are ints and some modulo math to compute new heading directly
@@ -66,8 +68,10 @@ namespace NotAPlanetRover.Models
             return true;
         }
 
+        ///<inheritdoc/>
         public uint MapHeight { get { return m_map.Height; } }
 
+        ///<inheritdoc/>
         public uint MapWidth { get { return m_map.Width; } }
 
         private IMap m_map;

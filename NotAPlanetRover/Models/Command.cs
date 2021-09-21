@@ -4,6 +4,8 @@
     {
         protected int moveDistance = 1;
         protected int rotateAmount = 1;
+
+        ///<inheritdoc/>
         public abstract bool Execute(IRover rover);
     }
 

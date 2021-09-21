@@ -20,8 +20,14 @@
         /// <returns></returns>
         Obstacle GetCell(uint x, uint y);
 
+        /// <summary>
+        /// Map width
+        /// </summary>
         uint Width { get; }
 
+        /// <summary>
+        /// Map height
+        /// </summary>
         uint Height { get; }
     }
 }

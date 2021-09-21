@@ -11,7 +11,7 @@ namespace NotAPlanetRover.Controllers
             m_rover = rover;
             m_logger = logger;
 
-
+            //These commands are specific to the rover implementation so it's not useful to use DI here for now
             m_commands = new Dictionary<char, ICommand>
             {
                 { 'f', new Forward() },
