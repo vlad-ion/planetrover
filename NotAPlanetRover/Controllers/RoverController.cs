@@ -11,6 +11,7 @@ namespace NotAPlanetRover.Controllers
             m_rover = rover;
             m_logger = logger;
 
+
             m_commands = new Dictionary<char, ICommand>
             {
                 { 'f', new Forward() },
@@ -27,7 +28,12 @@ namespace NotAPlanetRover.Controllers
             {
                 if (m_commands.TryGetValue(char.ToLowerInvariant(command), out var commandObj))
                 {
-                    commandObj.Execute(m_rover);
+                    bool couldExecute = commandObj.Execute(m_rover);
+                    if (!couldExecute)
+                    {
+                        //rover encountered an obstacle and stopped moving
+                        break;
+                    }
                 }
                 else
                 {
@@ -41,6 +47,12 @@ namespace NotAPlanetRover.Controllers
         {
             return m_rover.Position;
         }
+
+        ///<inheritdoc/>
+        public uint MapHeight { get { return m_rover.MapHeight; } }
+
+        ///<inheritdoc/>
+        public uint MapWidth { get { return m_rover.MapWidth; } }
 
         private IRover m_rover;
 

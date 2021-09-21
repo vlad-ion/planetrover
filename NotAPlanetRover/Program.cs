@@ -14,6 +14,7 @@ namespace NotAPlanetRover
         static IHostBuilder CreateHostBuilder(string[] args) 
             => Host.CreateDefaultBuilder(args).ConfigureServices((_, services)
                 => services.AddHostedService<Worker>()
+                    .AddScoped<IMap, Map>()
                     .AddScoped<IRover, Rover>()
                     .AddScoped<IRoverController, RoverController>());
     }

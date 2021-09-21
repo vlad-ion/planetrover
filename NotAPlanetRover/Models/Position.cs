@@ -1,6 +1,6 @@
 ﻿namespace NotAPlanetRover.Models
 {
-    public record Position(int x, int y, Heading orientation)
+    public record Position(uint x, uint y, Heading orientation)
     {
         public override string ToString()
         {

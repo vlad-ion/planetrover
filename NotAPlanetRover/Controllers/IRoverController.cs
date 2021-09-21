@@ -15,5 +15,15 @@ namespace NotAPlanetRover.Controllers
         /// </summary>
         /// <returns></returns>
         public Position GetRoverPosition();
+
+        /// <summary>
+        /// Map height
+        /// </summary>
+        public uint MapHeight { get; }
+
+        /// <summary>
+        /// Map width
+        /// </summary>
+        public uint MapWidth { get; }
     }
 }

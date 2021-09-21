@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Logging.Abstractions;
+﻿using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NotAPlanetRover.Controllers;
 using NotAPlanetRover.Models;
@@ -6,78 +6,46 @@ using NotAPlanetRover.Models;
 namespace RoverTests
 {
     [TestClass]
-    public class BasicRoverTests
+    public class MapWrapTests
     {
         [TestMethod]
-        public void StaysPutOnNoCommand()
+        public void WrapForward()
         {
             var controller = CreateController();
-            controller.Navigate("");
+            controller.Navigate("FF");
 
             var position = controller.GetRoverPosition();
             Assert.AreEqual(new Position(0, 0, Heading.North), position);
         }
 
         [TestMethod]
-        public void MoveForward()
+        public void WrapBackward()
         {
             var controller = CreateController();
-            controller.Navigate("F");
-
-            var position = controller.GetRoverPosition();
-            Assert.AreEqual(new Position(0, 1, Heading.North), position);
-        }
-
-
-        [TestMethod]
-        public void MoveBackward()
-        {
-            var controller = CreateController();
-            controller.Navigate("B");
-
-            var position = controller.GetRoverPosition();
-            Assert.AreEqual(new Position(0, controller.MapHeight - 1, Heading.North), position);
-        }
-
-        [TestMethod]
-        public void MoveBackAndForth()
-        {
-            var controller = CreateController();
-            controller.Navigate("BF");
+            controller.Navigate("BB");
 
             var position = controller.GetRoverPosition();
             Assert.AreEqual(new Position(0, 0, Heading.North), position);
         }
 
         [TestMethod]
-        public void RotateLeft()
+        public void WrapLeft()
         {
             var controller = CreateController();
-            controller.Navigate("L");
+            controller.Navigate("LFF");
 
             var position = controller.GetRoverPosition();
             Assert.AreEqual(new Position(0, 0, Heading.West), position);
         }
 
-
         [TestMethod]
-        public void RotateRight()
+        public void WrapRight()
         {
             var controller = CreateController();
-            controller.Navigate("R");
+            controller.Navigate("LBB");
 
             var position = controller.GetRoverPosition();
-            Assert.AreEqual(new Position(0, 0, Heading.East), position);
-        }
-
-        [TestMethod]
-        public void RotateLeftAnd()
-        {
-            var controller = CreateController();
-            controller.Navigate("LR");
-
-            var position = controller.GetRoverPosition();
-            Assert.AreEqual(new Position(0, 0, Heading.North), position);
+            Assert.AreEqual(new Position(0, 0, Heading.West), position);
         }
 
         [TestMethod]
@@ -91,10 +59,10 @@ namespace RoverTests
         }
 
         [TestMethod]
-        public void MoveInLoopClockwise()
+        public void MoveInLargerLoop()
         {
             var controller = CreateController();
-            controller.Navigate("lflflflf");
+            controller.Navigate("ffrffrffrffr");
 
             var position = controller.GetRoverPosition();
             Assert.AreEqual(new Position(0, 0, Heading.North), position);
@@ -103,7 +71,7 @@ namespace RoverTests
         private IRoverController CreateController()
         {
             //Objects are simple enough that we don't need to mock anything for the tests here
-            IMap map = new Map(10, 10);
+            IMap map = new Map(2, 2);
             IRover rover = new Rover(map, NullLogger<Rover>.Instance);
             IRoverController controller = new RoverController(rover,
                 NullLogger<RoverController>.Instance);
