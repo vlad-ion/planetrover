@@ -27,7 +27,7 @@
 
         //if the grid content becomes editable then remove readonly
         //grid cells could also interact differently with the rover based on content
-        private readonly Obstacle[,] grid;
+        protected readonly Obstacle[,] grid;
     }
 
     public enum Obstacle
