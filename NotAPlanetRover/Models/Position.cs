@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace NotAPlanetRover.Models
+﻿namespace NotAPlanetRover.Models
 {
     public record Position(int x, int y, Orientation orientation)
     {

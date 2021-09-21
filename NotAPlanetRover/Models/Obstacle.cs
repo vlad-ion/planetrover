@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NotAPlanetRover.Models
+﻿namespace NotAPlanetRover.Models
 {
-    enum Obstacle
+    public enum Obstacle
     {
+        BigRock,
+        SmallRock,
+        Alien,
+        PlasmaRifle
     }
 }
