@@ -46,6 +46,7 @@ namespace RoverTests
             public ObstacleTestMap(uint width, uint height)
                 :base(width, height)
             {
+                //Clear the map and set known obstacle for tests
                 grid[0, 0] = Obstacle.None;
                 grid[0, 1] = Obstacle.BigRock;
                 grid[1, 0] = Obstacle.None;
