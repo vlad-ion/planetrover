@@ -1,18 +1,38 @@
-﻿using NotAPlanetRover.Models;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using NotAPlanetRover.Models;
 
 namespace NotAPlanetRover.Controllers
 {
     public class RoverController : IRoverController
     {
-        public RoverController(IRover rover)
+        public RoverController(IRover rover, ILogger<RoverController> logger)
         {
             m_rover = rover;
+            m_logger = logger;
+
+            m_commands = new Dictionary<char, ICommand>
+            {
+                { 'f', new Forward() },
+                { 'b', new Backward() },
+                { 'l', new RotateLeft() },
+                { 'r', new RotateRight() }
+            };
         }
 
         ///<inheritdoc/>
         public void Navigate(string commands)
         {
-            //TODO
+            foreach (char command in commands)
+            {
+                if (m_commands.TryGetValue(command, out var commandObj)) {
+                    commandObj.Execute(m_rover);
+                }
+                else
+                {
+                    m_logger.LogWarning($"Invalid command {command} received, skipping.");
+                }
+            }
         }
 
         ///<inheritdoc/>
@@ -22,5 +42,9 @@ namespace NotAPlanetRover.Controllers
         }
 
         private IRover m_rover;
+
+        private ILogger<RoverController> m_logger;
+
+        private Dictionary<char, ICommand> m_commands;
     }
 }

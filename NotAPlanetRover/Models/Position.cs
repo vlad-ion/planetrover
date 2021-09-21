@@ -1,6 +1,6 @@
 ﻿namespace NotAPlanetRover.Models
 {
-    public record Position(int x, int y, Orientation orientation)
+    public record Position(int x, int y, Heading orientation)
     {
         public override string ToString()
         {
@@ -8,11 +8,17 @@
         }
     }
 
-    public enum Orientation
+    /// <summary>
+    /// Possible rover headings.
+    /// This could be replaced with 90/180/etc degrees from the start to allow any angle,
+    /// but for simplicity we keep it like this.
+    /// </summary>
+    public enum Heading
     {
         North,
         West,
         South,
-        East
+        East,
+        DirectionsCount
     }
 }

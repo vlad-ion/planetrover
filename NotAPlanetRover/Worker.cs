@@ -1,10 +1,12 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NotAPlanetRover.Controllers;
+using NotAPlanetRover.Models;
 
 namespace NotAPlanetRover
 {
@@ -14,6 +16,8 @@ namespace NotAPlanetRover
         {
             m_roverController = roverController;
             m_logger = logger;
+
+
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancelToken)
