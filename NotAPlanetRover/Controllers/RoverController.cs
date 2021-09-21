@@ -25,7 +25,8 @@ namespace NotAPlanetRover.Controllers
         {
             foreach (char command in commands)
             {
-                if (m_commands.TryGetValue(command, out var commandObj)) {
+                if (m_commands.TryGetValue(char.ToLowerInvariant(command), out var commandObj))
+                {
                     commandObj.Execute(m_rover);
                 }
                 else

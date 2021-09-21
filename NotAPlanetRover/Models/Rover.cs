@@ -34,6 +34,10 @@
             //use the fact that enums are ints and some modulo math to compute new heading directly
             Heading newHeading = (Heading)(((int)Position.orientation + rotateAmount)
                 % (int)Heading.DirectionsCount);
+            if (newHeading < 0)
+            {
+                newHeading += (int)Heading.DirectionsCount;
+            }
             Position = new Position(Position.x, Position.y, newHeading);
         }
     }
